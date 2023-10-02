@@ -15,6 +15,18 @@ class SplunkDataFetcher:
         return self._session
 
     def fetch_data_from_splunk(self):
+        """
+        Fetches data from Splunk and handles potential errors.
+
+        Sends an HTTP POST request to the Splunk API with the configured payload
+        and URL. Handles various types of exceptions that may occur during the
+        request, printing corresponding error messages.
+
+        Returns:
+            dict or None: The response JSON as a dictionary if successful, or None
+            in case of an error.
+
+        """
         try:
             response = self.session.post(self.splunk_url, json=self.payload)
             response.raise_for_status()
